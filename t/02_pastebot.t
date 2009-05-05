@@ -5,8 +5,8 @@ use warnings;
 use POE;
 use_ok('POE::Component::Client::Pastebot');
 
-my $pastebot = 'http://sial.org/pbot';
-#my $pastebot = 'http://erxz.com/pb/';
+#my $pastebot = 'http://sial.org/pbot';
+my $pastebot = 'http://erxz.com/pb/';
 
 POE::Session->create(
 	package_states => [
@@ -38,7 +38,7 @@ sub _time_out {
 sub _child {
   my ($kernel,$what,$who) = @_[KERNEL,ARG0,ARG1];
   if ( $what eq 'create' ) {
-	$kernel->post( $who => 'paste' => { event => '_got_paste', paste => '.', url => $pastebot } );
+	$kernel->post( $who => 'paste' => { event => '_got_paste', paste => 'Moo', url => $pastebot } );
 	pass('created');
 	return;
   }
