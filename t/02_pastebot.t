@@ -5,8 +5,8 @@ use warnings;
 use POE;
 use_ok('POE::Component::Client::Pastebot');
 
-#my $pastebot = 'http://sial.org/pbot';
-my $pastebot = 'http://erxz.com/pb/';
+my $pastebot = 'http://sial.org/pbot';
+#my $pastebot = 'http://erxz.com/pb/';
 
 POE::Session->create(
 	package_states => [
