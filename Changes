@@ -1,6 +1,9 @@
 POE::Component::Client::Pastebot
 ================================
 
+1.10	Wed May  6 00:18:08 BST 2009
+	- Refactored to use POE::Component::Client::HTTP
+
 1.08	Sun Dec 14 12:13:45 GMT 2008
 	- Minimum required perl is now 5.008
 	  because Storable needs B::Deparse >= 0.61
