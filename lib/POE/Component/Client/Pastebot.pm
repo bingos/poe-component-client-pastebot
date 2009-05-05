@@ -314,7 +314,7 @@ It was inspired by L<http://sial.org/> pbotutil.
 
 =over
 
-=item spawn
+=item C<spawn>
 
 Starts a new POE::Component::Client::Pastebot session and returns an object.
 Takes a number of arguments all are optional.
@@ -328,11 +328,11 @@ Takes a number of arguments all are optional.
 
 =over
 
-=item session_id
+=item C<session_id>
 
 Takes no arguments. Returns the POE Session ID of the component.
 
-=item shutdown
+=item C<shutdown>
 
 Takes no arguments, terminates the component.
 
@@ -344,7 +344,7 @@ What POE events our component will accept.
 
 =over
 
-=item paste
+=item C<paste>
 
 Sends a paste request to a pastebot url. Accepts either a hashref of the following
 values or a list of the same:
@@ -358,7 +358,7 @@ values or a list of the same:
 
 You may also pass arbitary key/values in the hashref ( as demonstrated in the SYNOPSIS ). Arbitary keys should have an underscore prefix '_'.
 
-=item fetch
+=item C<fetch>
 
 Retrieves the text from a given paste url. Accepts either a hashref of the following
 values or a list of the same:
@@ -368,7 +368,7 @@ values or a list of the same:
 
 You may also pass arbitary key/values in the hashref ( as demonstrated in the SYNOPSIS ). Arbitary keys should have an underscore prefix '_'.
 
-=item shutdown
+=item C<shutdown>
 
 Takes no arguments, terminates the component.
 
@@ -390,11 +390,11 @@ The following additional key/values will be present depending on the type of req
 
 =over
 
-=item paste
+=item C<paste>
 
   'pastelink', the URL of the paste that was made;
 
-=item fetch
+=item C<fetch>
 
   'content', the contents of the paste URL that was retrieved;
 
@@ -402,11 +402,11 @@ The following additional key/values will be present depending on the type of req
 
 =head1 AUTHOR
 
-Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+Chris C<BinGOs> Williams <chris@bingosnet.co.uk>
 
 =head1 LICENSE
 
-Copyright C<(c)> Chris Williams.
+Copyright E<copy> Chris Williams.
 
 This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
