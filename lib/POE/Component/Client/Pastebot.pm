@@ -8,7 +8,7 @@ use URI;
 use HTML::TokeParser;
 use vars qw($VERSION);
 
-$VERSION = '1.10';
+$VERSION = '1.12';
 
 # Stolen from POE::Wheel. This is static data, shared by all
 my $current_id = 0;
@@ -194,7 +194,7 @@ sub _http_response {
   $req->{response} = $response;
   unless ( $response->is_success ) {
     if ( $response->is_error ) {
-      ($req->{error}) = $response->error_as_HTML =~ /^(\d{3}.+)/m;
+      $req->{error} = $response->as_string;
     } 
     else {
       $req->{error} = 'unknown error';
@@ -398,3 +398,5 @@ L<Bot::Pastebot>
 L<HTTP::Response>
 
 L<http://sial.org/code/perl/scripts/pbotutil.pl>
+
+=cut

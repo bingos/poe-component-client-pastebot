@@ -1,6 +1,6 @@
 NAME
-    POE::Component::Client::Pastebot - interact with Bot::Pastebot web
-    services.
+    POE::Component::Client::Pastebot - Interact with Bot::Pastebot web
+    services from POE.
 
 SYNOPSIS
       use strict;
@@ -70,7 +70,7 @@ DESCRIPTION
     It was inspired by <http://sial.org/> pbotutil.
 
 CONSTRUCTOR
-    spawn
+    "spawn"
         Starts a new POE::Component::Client::Pastebot session and returns an
         object. Takes a number of arguments all are optional.
 
@@ -78,16 +78,16 @@ CONSTRUCTOR
           'options', a hashref of POE Session options to pass to the component's session;
 
 METHODS
-    session_id
+    "session_id"
         Takes no arguments. Returns the POE Session ID of the component.
 
-    shutdown
+    "shutdown"
         Takes no arguments, terminates the component.
 
 INPUT EVENTS
     What POE events our component will accept.
 
-    paste
+    "paste"
         Sends a paste request to a pastebot url. Accepts either a hashref of
         the following values or a list of the same:
 
@@ -102,7 +102,7 @@ INPUT EVENTS
         demonstrated in the SYNOPSIS ). Arbitary keys should have an
         underscore prefix '_'.
 
-    fetch
+    "fetch"
         Retrieves the text from a given paste url. Accepts either a hashref
         of the following values or a list of the same:
 
@@ -113,7 +113,7 @@ INPUT EVENTS
         demonstrated in the SYNOPSIS ). Arbitary keys should have an
         underscore prefix '_'.
 
-    shutdown
+    "shutdown"
         Takes no arguments, terminates the component.
 
 OUTPUT EVENTS
@@ -130,14 +130,21 @@ OUTPUT EVENTS
     The following additional key/values will be present depending on the
     type of request made:
 
-    paste
+    "paste"
           'pastelink', the URL of the paste that was made;
 
-    fetch
+    "fetch"
           'content', the contents of the paste URL that was retrieved;
 
 AUTHOR
-    Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+    Chris "BinGOs" Williams <chris@bingosnet.co.uk>
+
+LICENSE
+    Copyright © Chris Williams.
+
+    This module may be used, modified, and distributed under the same terms
+    as Perl itself. Please see the license that came with your Perl
+    distribution for details.
 
 SEE ALSO
     POE
