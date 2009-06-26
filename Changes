@@ -1,6 +1,9 @@
 POE::Component::Client::Pastebot
 ================================
 
+1.12	Fri Jun 26 13:46:40 BST 2009
+	- Refactored the failing test case to use a local pastebot instead.
+
 1.10	Wed May  6 00:18:08 BST 2009
 	- Refactored to use POE::Component::Client::HTTP
 
