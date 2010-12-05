@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 12; 
+use Test::More tests => 11; 
 use POE;
 use Test::POE::Server::TCP;
 use POE::Filter::HTTP::Parser;

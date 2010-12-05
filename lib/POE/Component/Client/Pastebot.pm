@@ -8,7 +8,7 @@ use URI;
 use HTML::TokeParser;
 use vars qw($VERSION);
 
-$VERSION = '1.12';
+$VERSION = '1.14';
 
 # Stolen from POE::Wheel. This is static data, shared by all
 my $current_id = 0;

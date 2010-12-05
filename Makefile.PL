@@ -16,7 +16,7 @@ build_requires 'HTTP::Response' => 0;
 requires 'HTML::TokeParser' => 0;
 requires 'URI' => 0;
 requires 'HTTP::Request::Common' => 0;
-requires 'POE' => 1.005;
+requires 'POE' => 1.294;
 requires 'POE::Component::Client::HTTP' => 0.88;
 auto_provides;
 githubmeta;
