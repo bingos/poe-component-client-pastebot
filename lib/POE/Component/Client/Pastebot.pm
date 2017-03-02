@@ -1,14 +1,13 @@
 package POE::Component::Client::Pastebot;
 
+#ABSTRACT: Interact with Bot::Pastebot web services from POE.
+
 use strict;
 use warnings;
 use POE qw(Component::Client::HTTP);
 use HTTP::Request::Common;
 use URI;
 use HTML::TokeParser;
-use vars qw($VERSION);
-
-$VERSION = '1.16';
 
 # Stolen from POE::Wheel. This is static data, shared by all
 my $current_id = 0;
@@ -34,7 +33,7 @@ sub spawn {
   my $self = bless \%opts, $package;
   $self->{session_id} = POE::Session->create(
 	object_states => [
-	   $self => { shutdown => '_shutdown', 
+	   $self => { shutdown => '_shutdown',
 		      paste    => '_command',
 		      fetch    => '_command',
 	   },
@@ -60,7 +59,7 @@ sub _start {
   $self->{session_id} = $_[SESSION]->ID();
   if ( $self->{alias} ) {
      $kernel->alias_set( $self->{alias} );
-  } 
+  }
   else {
      $kernel->refcount_increment( $self->{session_id} => __PACKAGE__ );
   }
@@ -87,7 +86,7 @@ sub _dispatch {
   my $event = delete $input->{event};
   $kernel->post( $session, $event, $input );
   $kernel->refcount_decrement( $session => __PACKAGE__ );
-  undef;  
+  undef;
 }
 
 sub _command {
@@ -151,37 +150,37 @@ sub _http_request {
 	$postargs{'paste'} = $req->{paste};
 	my $id = _allocate_identifier();
 	$self->{_requests}->{ $id } = $req;
-	$kernel->post( 
-		$self->{_httpc}, 
+	$kernel->post(
+		$self->{_httpc},
 		'request', 
-		'_http_response', 
+		'_http_response',
 		POST( $url, \%postargs ),
 		"$id",
 	);
     }
     return;
-  } 
+  }
   if ( $req->{command} eq 'fetch' ) {
     my $url;
     my $urltmp = URI->new( $req->{url} . ( ( $req->{url} !~ m,\?tx=on$, ) ? '?tx=on' : '' ) );
     if ( defined $urltmp and defined $urltmp->scheme and $urltmp->scheme =~ /http/ ) {
- 	$url = $urltmp->canonical;
+      $url = $urltmp->canonical;
 	my $id = _allocate_identifier();
 	$self->{_requests}->{ $id } = $req;
-	$kernel->post( 
-		$self->{_httpc}, 
-		'request', 
-		'_http_response', 
+	$kernel->post(
+		$self->{_httpc},
+		'request',
+		'_http_response',
 		GET( $url ),
 		"$id",
 	);
-    } 
+    }
     else {
 	$req->{error} = 'problem with url provided';
 	$kernel->yield( '_dispatch', $req );
     }
     return;
-  } 
+  }
   return;
 }
 
@@ -195,7 +194,7 @@ sub _http_response {
   unless ( $response->is_success ) {
     if ( $response->is_error ) {
       $req->{error} = $response->as_string;
-    } 
+    }
     else {
       $req->{error} = 'unknown error';
     }
@@ -215,11 +214,8 @@ sub _http_response {
 }
 
 'Paste and cut';
-__END__
 
-=head1 NAME
-
-POE::Component::Client::Pastebot - Interact with Bot::Pastebot web services from POE.
+=pod
 
 =head1 SYNOPSIS
 
@@ -378,16 +374,6 @@ The following additional key/values will be present depending on the type of req
   'content', the contents of the paste URL that was retrieved;
 
 =back
-
-=head1 AUTHOR
-
-Chris C<BinGOs> Williams <chris@bingosnet.co.uk>
-
-=head1 LICENSE
-
-Copyright E<copy> Chris Williams.
-
-This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 
