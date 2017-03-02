@@ -1,6 +1,10 @@
 POE::Component::Client::Pastebot
 ================================
 
+1.16  Tue Mar  8 11:52:35 GMT 2011
+  - Update required version of POE::Filter::HTTP::Parser
+  - Remove diagnostics output from tests
+
 1.14  Sun Dec  5 22:13:19 GMT 2010
   - Fix the number of tests we expect in t/02_pastebot.t
 

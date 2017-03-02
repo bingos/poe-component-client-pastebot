@@ -10,7 +10,7 @@ abstract_from 'lib/POE/Component/Client/Pastebot.pm';
 readme_from 'lib/POE/Component/Client/Pastebot.pm';
 build_requires 'Test::More' => 0.47;
 build_requires 'Test::POE::Server::TCP' => 1.06;
-build_requires 'POE::Filter::HTTP::Parser' => 1.02;
+build_requires 'POE::Filter::HTTP::Parser' => 1.06;
 build_requires 'HTTP::Date' => 0;
 build_requires 'HTTP::Response' => 0;
 requires 'HTML::TokeParser' => 0;

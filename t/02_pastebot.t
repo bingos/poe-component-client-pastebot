@@ -43,7 +43,7 @@ sub httpd_client_input {
   my ($heap,$id,$req) = @_[HEAP,ARG0,ARG1];
   if ( $req->method eq 'POST' ) {
     my $content = $req->content();
-    my $path = $req->uri->as_string;
+    my $path = $req->uri->path_query;
     is( $content, 'paste=Moo', 'The paste content was as expected');
     is( $path, '/paste', 'The Path was okay' );
     my $resp = HTTP::Response->new( 200 );
@@ -58,7 +58,7 @@ sub httpd_client_input {
     $heap->{httpd}->send_to_client( $id, $resp );
     return;
   }
-  my $path = $req->uri->as_string;
+  my $path = $req->uri->path_query;
   is( $path, '/1?tx=on', 'The GET path was okay' );
   my $resp = HTTP::Response->new( 200 );
   $resp->protocol('HTTP/1.1');
@@ -106,7 +106,6 @@ sub _child {
 
 sub _got_paste {
   my ($kernel,$hashref) = @_[KERNEL,ARG0];
-  diag $hashref->{response}->as_string;
   if ( $hashref->{pastelink} ) {
 	pass('pastelink');
 	$kernel->post( $_[SENDER], 'fetch', { event => '_got_fetch', url => $hashref->{pastelink} } );
@@ -120,7 +119,6 @@ sub _got_paste {
 
 sub _got_fetch {
   my ($kernel,$heap,$hashref) = @_[KERNEL,HEAP,ARG0];
-  diag $hashref->{response}->as_string;
   ok( $hashref->{content}, 'fetched' );
   diag($hashref->{error}) unless $hashref->{content};
   $kernel->post( $_[SENDER], 'shutdown' );
